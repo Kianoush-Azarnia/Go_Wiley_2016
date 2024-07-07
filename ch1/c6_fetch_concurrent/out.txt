@@ -1,0 +1,3 @@
+Get "https://achmaz.ir": tls: failed to verify certificate: x509: certificate is valid for server9i.irwebspace.com, not achmaz.ir
+1.58   20491 https://google.com
+1.58s elapsed
