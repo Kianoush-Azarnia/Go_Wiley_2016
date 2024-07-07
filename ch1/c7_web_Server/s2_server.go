@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"sync"
 )
 
@@ -68,7 +69,15 @@ func handler3(w http.ResponseWriter, r *http.Request) {
 // server4 wants to send animated gif to the http client
 func server4() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		lissajous(w)
+		// Read the 'cycles' parameter from the URL
+		cyclesParam := r.URL.Query().Get("cycles")
+		// Convert the parameter to an integer
+		cycles, err := strconv.Atoi(cyclesParam)
+		if err != nil {
+			// Default to 5 cycles if the parameter is missing or invalid
+			cycles = 5
+		}
+		lissajous(w, cycles)
 	}) // each request calls handler
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }
