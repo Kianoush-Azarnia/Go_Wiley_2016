@@ -64,3 +64,11 @@ func handler3(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Form[%q] = %q\n", k, v)
 	}
 }
+
+// server4 wants to send animated gif to the http client
+func server4() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		lissajous(w)
+	}) // each request calls handler
+	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+}
