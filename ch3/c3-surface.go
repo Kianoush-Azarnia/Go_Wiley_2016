@@ -8,8 +8,8 @@ import (
 
 const (
 	width, height = 600, 320              // canvas size in pixels
-	cells         = 100                   // number of grid cells
-	xyrange       = 10.0                  // axis ranges (-xyrange..+xyrange)
+	cells         = 40                    // number of grid cells
+	xyrange       = 5.0                   // axis ranges (-xyrange..+xyrange)
 	xyscale       = width / (2 * xyrange) // pixels per x or y unit
 	zscale        = height * 0.4          // pixels per x unit
 	angle         = math.Pi / 6           // angle of x, y axes (=30°)
