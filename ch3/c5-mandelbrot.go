@@ -9,7 +9,6 @@ import (
 	"log"
 	"math/cmplx"
 	"net/http"
-	"os"
 )
 
 func main() {
@@ -18,7 +17,7 @@ func main() {
 
 func server() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Header().Set("Content-Type", "image/png")
 		draw(w)
 	})
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
@@ -40,7 +39,8 @@ func draw(out io.Writer) {
 			img.Set(px, py, mandelbrot(z))
 		}
 	}
-	png.Encode(os.Stdout, img)
+	// to show the image in the terminal to wite it in a file with a go run ... > pic.png command:
+	// png.Encode(os.Stdout, img)
 	png.Encode(out, img) // NOTE: ignoring errors
 }
 
